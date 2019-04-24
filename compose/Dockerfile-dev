@@ -1,0 +1,15 @@
+FROM python:3
+
+ENV LANG c.UTF-8
+ENV PYTHONUNBUFFERED 1
+
+RUN apt-get update && apt-get install -y \
+    libpq-dev
+
+WORKDIR /code
+
+ADD requirements.txt /code/
+RUN pip install -r requirements.txt
+
+ADD compose/start-dev.sh /start-dev.sh
+RUN chmod +x /*.sh
