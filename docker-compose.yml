@@ -2,6 +2,7 @@ version: '3'
 
 volumes:
   postgres_db:
+  django_packages:
 
 
 services:
@@ -16,6 +17,9 @@ services:
       - "8000:8000"
     volumes:
       - ./docker/:/code/
+      - django_packages:/usr/local/lib/python3.6/site-packages/
+    restart: always
+
   db:
     image: postgres:10.3
     restart: always
